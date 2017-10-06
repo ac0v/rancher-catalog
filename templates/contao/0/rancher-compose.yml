@@ -42,14 +42,14 @@ version: '2'
       type: "password"
 
 services:
-  contao:
+  web:
     scale: 1
     start_on_create: true
 
-  contao-mariab:
+  mariab:
     scale: 1
     start_on_create: true
 
-  contao-sftp:
+  sftp:
     scale: 1
     start_on_create: true

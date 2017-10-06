@@ -1,19 +1,19 @@
 version: '2'
 
 services:
-  contao:
+  web:
     image: ac0v/contao:4.4-alpine
     restart: always
     ports:
       - 80
     depends_on:
-      - contao-mariadb
+      - mariadb
     links:
-      - contao-mariadb
+      - mariadb
     volumes:
       - contao-app:/app
 
-  contao-mariadb:
+  mariadb:
     image: bitnami/mariadb:10.1.28-r0
     restart: always
     environment:
@@ -24,11 +24,13 @@ services:
     volumes:
       - contao-mariadb:/var/lib/mysql/
 
-  contao-sftp:
+  sftp:
     image: atmoz/sftp:alpine-3.6
     restart: always
     depends_on:
-      - contao
+      - web
+    links:
+      - web
     ports:
       - 22
     command: ${sftp_username}:${sftp_password}:1000:101
