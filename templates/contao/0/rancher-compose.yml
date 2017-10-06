@@ -38,19 +38,3 @@
       label: "SFTP Password"
       required: true
       type: "password"
-
-version: '2'
-      
-services:
-
-  web:
-    scale: 1
-    start_on_create: true
-
-  mariab:
-    scale: 1
-    start_on_create: true
-
-  sftp:
-    scale: 1
-    start_on_create: true
