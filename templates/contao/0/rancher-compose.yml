@@ -1,0 +1,42 @@
+.catalog:
+  name: "Contao"
+  version: "4.4-alpine"
+  description: "Contao: Content Management System | Barrierefrei | Open Source"
+  uuid: Contao-0
+  minimum_rancher_version: v0.51.0
+  questions:
+    - variable: db_root_password
+      description: "Password for the root user of the Database"
+      label: "DB Root Password"
+      required: true
+      type: "password"
+    - variable: db_name
+      description: "Database Name for the Application"
+      label: "DB Name"
+      required: true
+      default: "contao"
+      type: "string"
+    - variable: db_username
+      description: "Database Username for the Application"
+      label: "DB Application Username"
+      required: true
+      default: "contao"
+      type: "string"
+    - variable: db_password
+      description: "Database Password for the Application"
+      label: "DB Application Password"
+      required: true
+      type: "password"
+    - variable: sftp_username
+      description: "SFTP Username"
+      label: "SFTP Username"
+      required: true
+      default: "contao"
+      type: "string"
+    - variable: sftp_password
+      description: "SFTP Password"
+      label: "SFTP Password"
+      required: true
+      type: "password"
+
+contao:

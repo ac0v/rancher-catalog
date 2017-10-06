@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  web:
+    image: ac0v/contao:4.4-alpine
+    restart: always
+    ports:
+      - 80
+    depends_on:
+      - mariadb
+    links:
+      - mariadb
+    volumes:
+      - contao-app:/app
+
+  mariadb:
+    image: bitnami/mariadb:10.1.28-r0
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ${db_root_password}
+      MARIADB_DATABASE: ${db_name}
+      MARIADB_USER: ${db_username}
+      MARIADB_PASSWORD: ${db_password}
+    volumes:
+      - contao-mariadb:/var/lib/mysql/
+
+  sftp:
+    image: atmoz/sftp:alpine-3.6
+    volumes:
+      - contao-app:/home/${sftp_username}/app
+    ports:
+      - 22
+    depends_on:
+      - web
+    command: ${sftp_username}:${sftp_password}:1000:101
+
+volumes:
+    contao-app: {}
+    contao-mariadb: {}
