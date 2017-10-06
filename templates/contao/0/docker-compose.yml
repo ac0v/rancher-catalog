@@ -26,13 +26,14 @@ services:
 
   sftp:
     image: atmoz/sftp:alpine-3.6
-    volumes:
-      - contao-app:/home/${sftp_username}/app
-    ports:
-      - 22
+    restart: always
     depends_on:
       - web
+    ports:
+      - 22
     command: ${sftp_username}:${sftp_password}:1000:101
+    volumes:
+      - contao-app:/home/${sftp_username}/app
 
 volumes:
     contao-app:

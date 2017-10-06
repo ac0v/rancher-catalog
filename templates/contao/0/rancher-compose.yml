@@ -1,3 +1,5 @@
+version: '2'
+
 .catalog:
   name: "Contao"
   version: "4.4-alpine"
@@ -39,10 +41,7 @@
       required: true
       type: "password"
 
-version: '2'
-
 services:
-  
   web:
     scale: 1
     start_on_create: true
