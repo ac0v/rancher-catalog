@@ -7,17 +7,17 @@ version: '2'
   uuid: Contao-0
   minimum_rancher_version: v0.51.0
   questions:
-    - variable: db_root_password
-      description: "Password for the root user of the Database"
-      label: "DB Root Password"
-      required: true
-      type: "password"
     - variable: db_name
       description: "Database Name for the Application"
       label: "DB Name"
       required: true
       default: "contao"
       type: "string"
+    - variable: db_root_password
+      description: "Password for the root user of the Database"
+      label: "DB Root Password"
+      required: true
+      type: "password"
     - variable: db_username
       description: "Database Username for the Application"
       label: "DB Application Username"
@@ -42,14 +42,14 @@ version: '2'
       type: "password"
 
 services:
-  web:
+  contao:
     scale: 1
     start_on_create: true
 
-  mariab:
+  contao-mariab:
     scale: 1
     start_on_create: true
 
-  sftp:
+  contao-sftp:
     scale: 1
     start_on_create: true
