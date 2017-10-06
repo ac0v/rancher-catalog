@@ -1,6 +1,7 @@
 version: '2'
 
 services:
+
   web:
     image: ac0v/contao:4.4-alpine
     restart: always
@@ -12,6 +13,8 @@ services:
       - mariadb
     volumes:
       - contao-app:/app
+    labels:
+      io.rancher.container.pull_image: always
 
   mariadb:
     image: bitnami/mariadb:10.1.28-r0
@@ -23,6 +26,8 @@ services:
       MARIADB_PASSWORD: ${db_password}
     volumes:
       - contao-mariadb:/var/lib/mysql/
+    labels:
+      io.rancher.container.pull_image: always
 
   sftp:
     image: atmoz/sftp:alpine-3.6
@@ -36,6 +41,8 @@ services:
     command: ${sftp_username}:${sftp_password}:1000:101
     volumes:
       - contao-app:/home/${sftp_username}/app
+    labels:
+      io.rancher.container.pull_image: always
 
 volumes:
     contao-app:
