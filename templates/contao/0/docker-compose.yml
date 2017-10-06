@@ -35,5 +35,7 @@ services:
     command: ${sftp_username}:${sftp_password}:1000:101
 
 volumes:
-    contao-app: {}
-    contao-mariadb: {}
+    contao-app:
+      driver: local
+    contao-mariadb:
+      driver: local
